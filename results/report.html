@@ -2,10 +2,62 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <title>Отчет</title>
+  <title>Report</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
- ...    
+  <div class="job_launcher_report">
+    <h2>Job launcher report</h2>
+    <p>Jenkins server: http://192.168.56.27<P>
+    <table>
+        <tbody>
+            <tr>
+                <th>name</th>
+                <th>status</th>
+                <th>timestamp</th>
+                <th>number</th>
+            </tr>
+            <tr>
+                <td>http://192.168.56.27/job/random_number_generator/54/</td>
+                <td>SUCCESS</td>
+                <td>20210426-132541</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>http://192.168.56.27/job/random_number_generator/55/</td>
+                <td>FAILURE</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>job: nonexistent_job, parameters: LIMIT=100</td>
+                <td>UNKNOWN</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>http://192.168.56.27/job/random_number_generator/56/</td>
+                <td>SUCCESS</td>
+                <td>20210426-132616</td>
+                <td>37</td>
+            </tr>
+        </tbody>
+    </table>
+</div>   
 </body>
+
+
+<style type="text/css">
+  .job_launcher_report table {
+      border-collapse:collapse;
+  }
+  
+  .job_launcher_report table td, .job_launcher_report table th {
+      border:1px solid #000000;
+      padding:0 3px 0 3px;
+  }
+  </style>
 </html>
+
+  
+  
