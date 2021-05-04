@@ -1,6 +1,6 @@
 import jenkinsapi
 from jenkinsapi.jenkins import Jenkins
-from jenkinsapi.build import Build, JenkinsAPIException, JobLauncherApplicationException
+from jenkinsapi.build import Build, JenkinsAPIException
 from requests import RequestException
 
 
@@ -20,12 +20,15 @@ class JenkinsJob:
     def get_last_info(self):
         
         self.job = self.server.get_job(self.jobname)
-        print(job.get_last_build().get_status())
-        print(job.get_last_build().get_timestamp())
-        print(job.get_last_build().get_duration())
-        print(job.get_last_build().get_number())
-        print(job.get_last_build().get_console())
-        
+        print(self.job.get_last_build().get_status())
+        print(self.job.get_last_build().get_timestamp())
+        print(self.job.get_last_build().get_duration())
+        print(self.job.get_last_build().get_number())
+        print(self.job.get_last_build().get_console())
+        return (self.job.get_last_build().get_status(), self.job.get_last_build().get_timestamp(), self.job.get_last_build().get_duration(),
+        self.job.get_last_build().get_number())
+
+
     def get_all_info(self):
         cur_job = self.server.get_job(self.jobname)
         builds = cur_job.get_build_dict()
@@ -36,5 +39,5 @@ class JenkinsJob:
             print(cur_job.get_build(build).get_status())
             print(cur_job.get_build(build).get_timestamp())
             print(cur_job.get_build(build).get_console())
-        
+            
     
