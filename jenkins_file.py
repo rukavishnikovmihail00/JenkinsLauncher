@@ -18,13 +18,11 @@ class JenkinsJob:
         
     
     def get_last_info(self):
-        
         self.job = self.server.get_job(self.jobname)
         print(self.job.get_last_build().get_status())
         print(self.job.get_last_build().get_timestamp())
         print(self.job.get_last_build().get_duration())
         print(self.job.get_last_build().get_number())
-        print(self.job.get_last_build().get_console())
         return (self.job.get_last_build().get_status(), self.job.get_last_build().get_timestamp(), self.job.get_last_build().get_duration(),
         self.job.get_last_build().get_number())
 
@@ -38,6 +36,5 @@ class JenkinsJob:
             print(cur_job.get_build(build).get_duration())
             print(cur_job.get_build(build).get_status())
             print(cur_job.get_build(build).get_timestamp())
-            print(cur_job.get_build(build).get_console())
-            
-    
+           
+        return builds, cur_job

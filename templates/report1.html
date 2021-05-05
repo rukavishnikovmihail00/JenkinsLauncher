@@ -8,7 +8,7 @@
 <body>
   <div class="job_launcher_report">
     <h2>Job launcher report</h2>
-    <p>Jenkins server: <P>
+    <p>Jenkins server: {{ url }}<P>
     <table>
         <tbody>
             <tr>
@@ -17,12 +17,14 @@
                 <th>Timestamp</th>
                 <th>Duration</th>
             </tr>
+            {% for build in builds %}
             <tr>
-                <th>16</th>
-                <th>SUCCESS</th>
-                <th>2021-05-04 10:37:47+00:00</th>
-                <th>0:00:01.086000</th>
+                <th>{{ cur_job.get_build(build).get_number() }}</th>
+                <th>{{ cur_job.get_build(build).get_status() }}</th>
+                <th>{{ cur_job.get_build(build).get_timestamp() }}</th>
+                <th>{{ cur_job.get_build(build).get_duration() }}</th>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>   
