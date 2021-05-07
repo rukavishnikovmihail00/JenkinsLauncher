@@ -16,7 +16,7 @@ class ParseArgs:
         self.parser.add_argument('-m', help='L is for the last build and A is for all the builds')
         self.parser.add_argument('-u', help='Username')
         self.parser.add_argument('-p', help='Password')
-        self.parser.add_argument('-z', default=0, help='Option "1" to create a .zip')
+        self.parser.add_argument('-z', default=0, help='Enter a project path to create a .zip')
         args = vars(self.parser.parse_args())
         return args
 
@@ -40,8 +40,10 @@ if __name__ == "__main__":
             rend = template.render(status=status, timestamp=time, duration=dur, number=number)
             f.write(rend)
 
-        webbrowser.open('file://' + os.path.realpath('C:/Users/MARukavishnikov/Desktop/JenkinsLauncher/templates/report.html'))
-        
+        try:
+            webbrowser.open('file://' + os.path.realpath('C:/Users/MARukavishnikov/Desktop/JenkinsLauncher/templates/report.html'))
+        except:
+            print('You need to change a path manually')
         
     if (args['m'] == 'A'):  
         template = env.get_template('report1.html')  
@@ -50,9 +52,11 @@ if __name__ == "__main__":
         with open('file://' + 'templates/report1.html', 'w') as f:
             rend = template.render(builds=builds, cur_job=cur_job, url=url)
             f.write(rend)
+        try:
+            webbrowser.open('file://' + os.path.realpath('C:/Users/MARukavishnikov/Desktop/JenkinsLauncher/templates/report1.html'))
+        except:
+            print('You need to change a path manually')
 
-        webbrowser.open('file://' + os.path.realpath('C:/Users/MARukavishnikov/Desktop/JenkinsLauncher/templates/report1.html'))
-
-    if (args['z'] == '1'):
-        Archivator().archivate()
+    if (args['z'] != 0):
+        Archivator().archivate(args['z'])
  
