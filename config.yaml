@@ -1,14 +1,14 @@
 jenkins_server: http://localhost:8080/
 builds:
-  - name: random_number_generator
+  - name: random_number
     parameters:
-      LIMIT: 10
-  - name: random_number_generator
+      number: 12
+  - name: random_number
     parameters:
-      LIMIT: abc1000
-  - name: nonexistent_job
+      number: 123
+  - name: random_numer
     parameters:
-      LIMIT: 100
-  - name: random_number_generator
+      number: 1234
+  - name: random_number
     parameters:
-      LIMIT: 100
+      number: 12345

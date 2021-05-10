@@ -20,11 +20,24 @@ class ParseArgs:
         return args
 
 
+class ParseYamlFile:
+    def __init__(self, yaml_file):
+        self.yaml_file = yaml_file
+
+
+    def parse_yaml(self):
+        config = yaml.load(open(self.yaml_file), Loader = yaml.Loader)
+        for i in range(len(config['builds'])):
+            print(config['builds'][i]['parameters']['number']) # just an example of YAML parcing
+        return config['jenkins_server']
+
+
 if __name__ == "__main__":
     args = ParseArgs().parse()
+    yaml_config = ParseYamlFile('config.yaml')
     username = args['u']
     password = args['p']
-    url = 'http://localhost:8080/'
+    url = yaml_config.parse_yaml()
 
     server = JenkinsJob(url, username, password, 'JobReport')
     file_loader = FileSystemLoader('templates')
