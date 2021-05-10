@@ -3,9 +3,9 @@ from jenkins_file import JenkinsJob
 import argparse
 from jinja2 import Environment, FileSystemLoader
 from argparse import ArgumentParser
-from archivator import Archivator
 import webbrowser
 import os
+import yaml
 
 class ParseArgs:
     def __init__(self):
@@ -16,14 +16,12 @@ class ParseArgs:
         self.parser.add_argument('-m', help='L is for the last build and A is for all the builds')
         self.parser.add_argument('-u', help='Username')
         self.parser.add_argument('-p', help='Password')
-        self.parser.add_argument('-z', default=0, help='Enter a project path to create a .zip')
         args = vars(self.parser.parse_args())
         return args
 
 
 if __name__ == "__main__":
     args = ParseArgs().parse()
-    print(args)
     username = args['u']
     password = args['p']
     url = 'http://localhost:8080/'
@@ -57,6 +55,5 @@ if __name__ == "__main__":
         except:
             print('You need to change a path manually')
 
-    if (args['z'] != 0):
-        Archivator().archivate(args['z'])
+    
  
